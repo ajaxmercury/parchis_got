@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import Clases.CGameMaster;
@@ -17,10 +14,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author yulio
- */
 public class CDice extends JLabel {
 
     private int value = 1;

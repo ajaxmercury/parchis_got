@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Clases.Boxes;
 
@@ -9,10 +6,7 @@ import GUI.CToken;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
+
 public class CBoxSafe extends CBoxNormal {
 
     boolean input;

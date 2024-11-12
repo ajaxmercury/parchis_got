@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import Clases.Boxes.CBox;
@@ -12,16 +9,13 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author Yulio
- */
+
 public class CToken {
-    //Attributes
+    
 
     public static int id;
-    private CBox box;           // current box
-    private int player;         // Owner of this token
+    private CBox box;           
+    private int player;         
     private int house;
     public Point location;
     public Color color;
@@ -31,7 +25,7 @@ public class CToken {
         image = null;
         String imgPath = "/Images/Tokens/" + house + ".png";
         try {
-            //image = (Image) ImageIO.read(new File(imgPath));
+            
             image = (Image) ImageIO.read(getClass().getResource(imgPath));
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
@@ -69,7 +63,7 @@ public class CToken {
         }
     }
 
-    // Query functions
+    
     public int getPlayer() {
         return player;
     }
@@ -90,7 +84,7 @@ public class CToken {
         this.location = location;
     }
 
-    // Assign functions
+    
     public void setBox(CBox casilla) {
         this.box = casilla;
     }

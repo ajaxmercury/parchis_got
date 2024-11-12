@@ -1,26 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases;
 
-import Exceptions.InvalidMoveException;
 import Clases.Boxes.CBox;
-import Clases.Boxes.CBoxHome;
 import Clases.Boxes.CBoxEnd;
+import Clases.Boxes.CBoxHome;
 import Clases.Boxes.CBoxSafe;
-import GUI.CToken;
+import Exceptions.InvalidMoveException;
 import GUI.CBoard;
+import GUI.CToken;
 
-/**
- *
- * @author yulio
- */
+
 public class CTryMove {
 
-    // 0 - ready
-    // 1 - correct
-    // 2 - fail
+    
     public int status;
 
     public int player;
@@ -49,9 +41,7 @@ public class CTryMove {
 
     private void lightDestiny() {
         origin = token.getBox();
-        //
-        // If I am in the goal
-        //
+       
         if (origin instanceof CBoxEnd) {
             valid = false;
             return;
@@ -59,26 +49,24 @@ public class CTryMove {
         int c;
         CBox current;
 
-        //
-        // If I am in a home
-        //
+       
         if (origin instanceof CBoxHome) {
-            // If the dice is 5
+            
             if (forward == 5) {
                 current = token.getBox().getNext(this.player);
                 destiny = current;
-                // If it is filled
+                
                 if (destiny.isFilled()) {
-                    if (((CBoxSafe) destiny).eatExceptional(token)) {    // If Can I eat
+                    if (((CBoxSafe) destiny).eatExceptional(token)) {    
                         destiny.property = CBox.EAT;
                         valid = true;
-                    } else {   // There is a barrier
+                    } else {   
                         destiny.property = CBox.BARRIER;
                         valid = false;
                     }
                     return;
                 }
-                // If another token will be
+                
                 destiny.property = CBox.MOVE;
                 valid = true;
                 return;
@@ -86,9 +74,7 @@ public class CTryMove {
             valid = false;
             return;
         }
-        //
-        // Normal Box y Path to end
-        //
+        
         c = 0;
         current = origin;
         while (c < forward) {
@@ -127,35 +113,33 @@ public class CTryMove {
                     food = f;
                 }
             }
-            // Quit the food token 
+            
             destiny.quitToken(food);
-            // Add the bonuses
+            
             bonus = 20;
 
-            // Add the food in his house
+            
             board.homes[food.getPlayer()].addToken(food);
 
-            // Quit the new token of the origin
+            
             origin.quitToken(this.token);
 
-            // Add the new token in the destiny
+            
             destiny.addToken(this.token);
 
-            //Next turn
-            //gameMaster.nextTurn();
+           
             return;
 
         }
 
         if (destiny.property == CBox.MOVE) {
-            // Quit the new token of the origin
+            
             origin.quitToken(this.token);
 
-            // Add the new token in the destiny
+            
             destiny.addToken(this.token);
 
-            //Next turn
-            //gameMaster.nextTurn();
+            
             return;
         }
 

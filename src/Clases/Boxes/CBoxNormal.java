@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases.Boxes;
 
 import GUI.CToken;
@@ -9,10 +6,7 @@ import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
+
 public class CBoxNormal extends CBox {
 
     public CBoxNormal(int id, int[] xpos, int[] ypos, CBox next) throws Exception {
@@ -21,21 +15,21 @@ public class CBoxNormal extends CBox {
 
     public void generatePositions() {
         Point center, left, right;
-        int w = Math.abs(area.xpoints[2] - area.xpoints[0]); // width
-        int h = Math.abs(area.ypoints[2] - area.ypoints[0]); // height
+        int w = Math.abs(area.xpoints[2] - area.xpoints[0]); 
+        int h = Math.abs(area.ypoints[2] - area.ypoints[0]); 
 
         center = new Point((int) (area.xpoints[2] + area.xpoints[0]) / 2 - 14,
                 (int) (area.ypoints[2] + area.ypoints[0]) / 2 - 14);
 
-        if (w < h) {        // If it is more height than width
+        if (w < h) {        
             left = new Point((int) center.getX(), (int) center.getY() - 14);
             right = new Point((int) center.getX(), (int) center.getY() + 14);
-        } else {            // If it is more width than height 
+        } else {            
             left = new Point((int) center.getX() - 14, (int) center.getY());
             right = new Point((int) center.getX() + 14, (int) center.getY());
         }
 
-        // I put the info on the position's array
+        
         positions = new Point[3];
 
         positions[0] = center;
@@ -45,7 +39,7 @@ public class CBoxNormal extends CBox {
 
     public void addToken(CToken token) throws Exception {
         if (tokens.size() >= 2) {
-            throw new Exception("Exceded the box capacity.");
+            throw new Exception("Excede el tamaño");
         } else {
             token.setBox(this);
             tokens.add(token);
@@ -66,7 +60,7 @@ public class CBoxNormal extends CBox {
     }
 
     public boolean eating(CToken token) {
-        if ((tokens.size() >= 1) && // If have a token
+        if ((tokens.size() >= 1) && 
                 (tokens.get(0).getPlayer() != token.getPlayer())) { //
             return true;
         }
@@ -83,7 +77,7 @@ public class CBoxNormal extends CBox {
 
     public void quitToken(CToken token) throws Exception {
         if (tokens.isEmpty()) {
-            throw new Exception("There is no token in the box.");
+            throw new Exception("No hay un token");
         }
         token.setBox(null);
         tokens.remove(token);

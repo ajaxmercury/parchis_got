@@ -1,17 +1,10 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases.Boxes;
 
 import GUI.CToken;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
 public class CBoxPathGoal extends CBoxNormal {
 
     private int player;
@@ -26,7 +19,7 @@ public class CBoxPathGoal extends CBoxNormal {
     @Override
     public void addToken(CToken token) throws Exception {
         if (tokens.size() >= 2) {
-            throw new Exception("Exceded the box capacity.");
+            throw new Exception("Excede el tamaño");
         } else {
             tokens.add(token);
             token.setBox(this);
@@ -48,7 +41,7 @@ public class CBoxPathGoal extends CBoxNormal {
         }
     }
 
-    // See if in the home path there is barriers
+    
     @Override
     public boolean eating(CToken token) {
         return false;

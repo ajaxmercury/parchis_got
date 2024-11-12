@@ -1,17 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 
 package Clases;
 
-//import DEBUG.JDebugWind;
+
 import GUI.CMainFrame;
 
-/**
- *
- * @author alexis
- */
+
 public class Main {
 
     static int c;
@@ -24,8 +18,7 @@ public class Main {
 
         gameMaster.setMainFrame(game);
 
-        //JDebugWind devug = new JDebugWind(juego, false, gameMaster);
-        //devug.setVisible(true);
+      
 
 
 

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import Clases.CBoardConstructor;
@@ -21,10 +18,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-/**
- *
- * @author alexis
- */
+
 public class CBoard extends JPanel {
 
     Image background;
@@ -37,7 +31,7 @@ public class CBoard extends JPanel {
 
     private void loadImage() throws IOException {
         background = (Image) ImageIO.read(getClass().getResource("/Images/Backs/FND.png"));
-        //fondo = (Image) ImageIO.read(new File("./Images/Backs/FND.png"));
+        
     }
 
     public CBoard(CGameMaster gameMaster) {
@@ -49,29 +43,29 @@ public class CBoard extends JPanel {
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        // Init boxes
+        
         initialize();
 
     }
 
     public void initialize() {
         try {
-            // build homes
+            
             homes = CBoardConstructor.generateHomes(4);
 
-            // build goals
+            
             goals = CBoardConstructor.generateGoals();
 
-            // build simple boxes
+            
             map = CBoardConstructor.generateMap();
 
-            // Generate goal paths
+            
             pathEnd = new ArrayList<CBox[]>();
             CBox[] path;
             for (int i = 0; i < 4; i++) {
                 path = CBoardConstructor.generatePathGoal(i);
 
-                // connect goals with paths
+                
                 for (int j = 1; j < path.length; j++) {
                     path[j - 1].setNext(path[j]);
 
@@ -81,7 +75,7 @@ public class CBoard extends JPanel {
                 pathEnd.add(path);
             }
 
-            // Connect inputs with simple boxes
+            
             for (int i = 0; i < 4; i++) {
                 ((CBoxSafe) map[((4 + i) * 17 - 1) % 68]).setInput(true);
                 ((CBoxSafe) map[((4 + i) * 17 - 1) % 68]).setPlayer(i);
@@ -89,16 +83,16 @@ public class CBoard extends JPanel {
             }
 
         } catch (Exception ex) {
-            //ex.notify();
+            
             JOptionPane.showMessageDialog(this, ex.getMessage());
         }
-        // Homes with outputs
+        
         homes[0].setNext(map[4]);
         homes[1].setNext(map[21]);
         homes[2].setNext(map[38]);
         homes[3].setNext(map[55]);
 
-        // Connect simple boxes
+        
         for (int i = 0; i < 67; i++) {
             map[i].id = i;
             map[i].setNext(map[i + 1]);

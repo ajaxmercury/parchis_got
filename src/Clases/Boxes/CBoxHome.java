@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases.Boxes;
 
 import GUI.CToken;
@@ -9,10 +6,7 @@ import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
+
 public class CBoxHome extends CBox {
 
     int player;
@@ -57,7 +51,7 @@ public class CBoxHome extends CBox {
 
     public void addToken(CToken token) throws Exception {
         if (tokens.size() >= 4) {
-            throw new Exception("Exceded the box capacity.");
+            throw new Exception("Haz excedido el tamaño");
         } else {
             token.setBox(this);
             tokens.add(token);

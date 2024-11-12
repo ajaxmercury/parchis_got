@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases;
 
 import GUI.CToken;
@@ -12,13 +9,10 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 
-/**
- *
- * @author Yulio
- */
+
 public class CPlayer implements IAPlayer {
 
-    //Atributos
+    
     public int id;
     private String name;
     public int house;
@@ -28,7 +22,7 @@ public class CPlayer implements IAPlayer {
     public CToken[] tokens = null;
     private boolean AI;
 
-    //Constructor
+    
     public CPlayer(int id, String name, int house, boolean AI) {
         this.id = id;
         this.house = house;
@@ -102,7 +96,7 @@ public class CPlayer implements IAPlayer {
     }
 
     public void play(CTryMove[] moves) {
-        throw new UnsupportedOperationException("This is a human.");
+        throw new UnsupportedOperationException("Es un Humano");
     }
 
 }

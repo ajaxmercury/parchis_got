@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases.Boxes;
 
 import GUI.CToken;
@@ -13,12 +10,12 @@ import java.util.ArrayList;
 
 public abstract class CBox implements Cloneable {
 
-    // Contants
+    
     public static final int MOVE = 1;
     public static final int EAT = 2;
     public static final int BARRIER = 3;
 
-    //Attributes
+    
     public int id;
     public int property;
     protected ArrayList<CToken> tokens;
@@ -27,14 +24,14 @@ public abstract class CBox implements Cloneable {
 
     CBox next;
 
-    // Create a box without positions
+    
     public CBox(int id, CBox next) {
         this.property = 0;
         this.id = id;
         tokens = new ArrayList<CToken>();
         area = new Polygon();
         this.next = next;
-        // generate the posibles positions of the tokens
+        
         generatePositions();
     }
 
@@ -44,11 +41,11 @@ public abstract class CBox implements Cloneable {
         this.next = next;
 
         if (xpos.length != ypos.length) {
-            throw new Exception("Invalid init coordinates.");
+            throw new Exception("Cordenadas Init Invalidas");
         }
         area = new Polygon(xpos, ypos, xpos.length);
 
-        // generate the posibles positions of the tokens
+        
         generatePositions();
     }
 
@@ -63,7 +60,7 @@ public abstract class CBox implements Cloneable {
         return false;
     }
 
-    // Asign functions
+   
     public void setArea(Polygon area) {
         this.area = area;
     }
@@ -72,7 +69,7 @@ public abstract class CBox implements Cloneable {
         this.next = next;
     }
 
-    // Utils
+   
     public abstract void generatePositions();
 
     public abstract void addToken(CToken token) throws Exception;
@@ -100,8 +97,8 @@ public abstract class CBox implements Cloneable {
         G.fillPolygon(area);
     }
 
-    // Query functions
-    public abstract CToken whichCliked(Point p);   // What token was clicked?
+    
+    public abstract CToken whichCliked(Point p);  
 
     public abstract boolean eating(CToken token);
 

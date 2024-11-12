@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases;
 
 import Clases.Boxes.CBox;
@@ -9,10 +6,6 @@ import Clases.Boxes.CBoxHome;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Dairelys Garcia
- */
 public class CAIPlayerKnight extends CPlayer {
 
     public CAIPlayerKnight(int id, String name, int house) {

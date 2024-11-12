@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases;
 
 import Exceptions.NoValidMovesException;
@@ -11,10 +8,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
+
 public class CGameFlow extends Thread {
 
     CGameMaster gameMaster;
@@ -39,24 +33,24 @@ public class CGameFlow extends Thread {
         while (block.get() && !interrupted()) {
             sleep(50);
         }
-        //sleep(50);
+        
     }
 
     public void release() {
         block.set(false);
     }
 
-    // Principal !!!!!
+   
     public void run() {
 
         int cont;
         while (!gameMaster.endedGame() && !interrupted()) {
             try {
 
-                // Turn of the player $inTurn
+                
                 cont = 0;
-                while ((cont % 6 == 0) && (cont < 18)) {  // while dice is 6 no more than 3 times
-                    gameMaster.getDice().paintComponents(gameMaster.getDice().getGraphics());   // Paint Dice
+                while ((cont % 6 == 0) && (cont < 18)) {  
+                    gameMaster.getDice().paintComponents(gameMaster.getDice().getGraphics());   
                     gameMaster.getMainFrame().updateData(gameMaster.getPlayers()[gameMaster.inTurn].getName(), "Throw dice.", Color.WHITE);
 
                     if (gameMaster.getPlayers()[gameMaster.inTurn].isAI()) {
@@ -65,7 +59,7 @@ public class CGameFlow extends Thread {
                     } else {
                         gameMaster.getDice().setActive(true);
                         hold();
-                        // Thread killing
+                        
                         if (gameMaster.status == 0) {
                             return;
                         }
@@ -73,13 +67,13 @@ public class CGameFlow extends Thread {
                     }
                     cont += gameMaster.getDice().getValue();
 
-                    // Light posible moves
-                    if (gameMaster.lightMoves(gameMaster.getDice().getValue())) { // Play, if I can
+                    
+                    if (gameMaster.lightMoves(gameMaster.getDice().getValue())) { 
                         playAThrow();
                     } else {
                         throw new NoValidMovesException();
                     }
-                    // Thread killing
+                    
                     if (gameMaster.status == 0) {
                         return;
                     }
@@ -90,17 +84,17 @@ public class CGameFlow extends Thread {
             } catch (NoValidMovesException ex) {
                 gameMaster.getMainFrame().updateData(gameMaster.getPlayers()[gameMaster.inTurn].getName(), ex.getMessage(), Color.red);
                 littlePause(500);
-                //JOptionPane.showMessageDialog(getBoard(), ex);
+                
             }
 
             gameMaster.nextTurn();
-            // Garbage colector of JVM
+            
             System.gc();
         }
     }
 
     public void playAThrow() throws InterruptedException {
-        // Wait for the player shoose
+        
         while (gameMaster.getMoves() != null && !interrupted()) {
             gameMaster.getBoard().addMouseListener(new CCatcherClicksBoard(gameMaster));
 
@@ -114,7 +108,7 @@ public class CGameFlow extends Thread {
                     return;
                 }
             }
-            // Review if I have bonus
+            
             CTryMove next = null;
 
             for (CTryMove move : gameMaster.getMoves()) {
@@ -125,11 +119,11 @@ public class CGameFlow extends Thread {
 
             }
 
-            // Clear old moves
+           
             gameMaster.clearMoves();
-            // if I have bonuses
+            
             if (next != null) {
-                // light new paths
+                
                 gameMaster.lightMoves(next.getBonus());
             }
         }

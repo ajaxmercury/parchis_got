@@ -1,14 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package Clases;
 
 import Clases.Boxes.CBox;
-import Clases.Boxes.CBoxPathGoal;
-import Clases.Boxes.CBoxHome;
 import Clases.Boxes.CBoxEnd;
+import Clases.Boxes.CBoxHome;
 import Clases.Boxes.CBoxNormal;
+import Clases.Boxes.CBoxPathGoal;
 import Clases.Boxes.CBoxSafe;
 import java.awt.Point;
 import java.awt.Polygon;
@@ -16,10 +13,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author alexis
- */
 public abstract class CBoardConstructor {
 
     public static CBox[] generateHomes(int players) throws Exception {
@@ -29,7 +22,7 @@ public abstract class CBoardConstructor {
         int xpos[] = new int[4];
         int ypos[] = new int[4];
 
-        // Generate the home of the 1st player
+        
         if (i < players) {
             xpos[0] = 0;
             xpos[1] = 196;
@@ -44,7 +37,7 @@ public abstract class CBoardConstructor {
 
             i++;
         }
-        // Generate the home of the 2nd player
+        
         if (i < players) {
             xpos[0] = 0;
             xpos[1] = 196;
@@ -58,7 +51,7 @@ public abstract class CBoardConstructor {
 
             i++;
         }
-        // Generate the home of the 3rd player
+        
         if (i < players) {
             xpos[0] = 404;
             xpos[1] = 600;
@@ -73,7 +66,7 @@ public abstract class CBoardConstructor {
 
             i++;
         }
-        // Generate the home of the 4th player
+        
         if (i < players) {
             xpos[0] = 404;
             xpos[1] = 600;
@@ -100,33 +93,33 @@ public abstract class CBoardConstructor {
 
         Polygon pol = null;
         try {
-            // Goal 1;
+            
             pol = new Polygon();
             pol.addPoint(p13.x, p13.y);
             pol.addPoint(p16.x, p16.y);
             pol.addPoint(p25.x, p25.y);
             goals[0] = new CBoxEnd(300, pol.xpoints, pol.ypoints, 0);
-            // Goal 2
+            
             pol = null;
             pol = new Polygon();
             pol.addPoint(p13.x, p13.y);
             pol.addPoint(p25.x, p25.y);
             pol.addPoint(p22.x, p22.y);
-            pol.addPoint(p22.x, p22.y); // Patch!!!!
+            pol.addPoint(p22.x, p22.y); 
             goals[1] = new CBoxEnd(301, pol.xpoints, pol.ypoints, 1);
-            // Goal 3
+            
             pol = new Polygon();
             pol.addPoint(p25.x, p25.y);
             pol.addPoint(p22.x, p22.y);
             pol.addPoint(p19.x, p19.y);
-            pol.addPoint(p19.x, p19.y); // Patch !!!
+            pol.addPoint(p19.x, p19.y); 
             goals[2] = new CBoxEnd(302, pol.xpoints, pol.ypoints, 2);
-            // Goal 4
+            
             pol = new Polygon();
             pol.addPoint(p16.x, p16.y);
             pol.addPoint(p25.x, p25.y);
             pol.addPoint(p19.x, p19.y);
-            pol.addPoint(p19.x, p19.y); // Patch !!!
+            pol.addPoint(p19.x, p19.y); 
             goals[3] = new CBoxEnd(303, pol.xpoints, pol.ypoints, 3);
 
         } catch (Exception ex) {
@@ -149,7 +142,7 @@ public abstract class CBoardConstructor {
         int vy = 0;
         switch (player) {
             case 0:
-                // init the indicators
+                
                 basex = 333;
                 basey = 224;
                 dimx = 68;
@@ -158,7 +151,7 @@ public abstract class CBoardConstructor {
                 vy = -1;
                 break;
             case 1:
-                // init the indicators
+
                 basex = 224;
                 basey = 333;
                 dimx = 28;
@@ -167,7 +160,7 @@ public abstract class CBoardConstructor {
                 vy = 0;
                 break;
             case 2:
-                // init the indicators
+                
                 basex = 333;
                 basey = 404;
                 dimx = 68;
@@ -176,7 +169,7 @@ public abstract class CBoardConstructor {
                 vy = +1;
                 break;
             case 3:
-                // init the indicators
+                
                 basex = 404;
                 basey = 333;
                 dimx = 28;
@@ -185,7 +178,7 @@ public abstract class CBoardConstructor {
                 vy = 0;
                 break;
         }
-        // init the positions
+        
         xpos[0] = basex - dimx;
         xpos[1] = basex;
         xpos[2] = basex;
@@ -216,7 +209,7 @@ public abstract class CBoardConstructor {
         int xpos[] = new int[4];
         int ypos[] = new int[4];
 
-        // init the positions
+        
         xpos[0] = basex - dimx;
         xpos[1] = basex;
         xpos[2] = basex;
@@ -255,30 +248,30 @@ public abstract class CBoardConstructor {
 
         CBox segment[] = new CBox[7];
 
-        // Generando Casillas Normales
+        
         int auxx = 0, auxy = 0;
 
-        // 1 - 7
+        
         segment = generatePathSegment(0, 264, 196, 68, 28, 0, -1);
         mergeArraysInv(segment, map, 0);
         map[7] = new CBoxNormal(7, generate4ptsCornerX(264, 68), generate4ptsCornerY(224, 28), null);
-        // 8 - 15
+        
         mirror(map, 0, 8, 8);
-        // 16
+        
         auxx = map[15].getArea().xpoints[2];
         auxy = map[15].getArea().ypoints[2] + 68;
         map[16] = new CBoxSafe(16, generate4ptsMediumX(auxx, 28), generate4ptsMediumY(auxy, 68), null, true, 1, null);
 
-        // 17 - 32
+        
         mirrorY(map, 0, 17, 16);
 
-        //33
+        
         auxx = map[32].getArea().xpoints[2] + 68;
         auxy = map[32].getArea().ypoints[2] + 28;
         map[33] = new CBoxSafe(33, generate4ptsMediumX(auxx, 68), generate4ptsMediumY(auxy, 28), null, true, 2, null);
-        //33 - 67
+        
         mirrorX(map, 0, 34, 33);
-        //33
+        
         auxx = map[49].getArea().xpoints[2] + 28;
         auxy = map[49].getArea().ypoints[2];
 
@@ -291,16 +284,16 @@ public abstract class CBoardConstructor {
         return map;
     }
 
-    // Auxiliar functions to generateMap()
+    
     private static void mergeArraysInv(CBox[] origin, CBox[] destiny, int idx) {
         for (int i = 0; i < origin.length; i++) {
-            destiny[idx + i] = origin[6 - i];       // <--- Change 6 * n
+            destiny[idx + i] = origin[6 - i];       
         }
     }
 
     private static void mergeArrays(CBox[] origin, CBox[] destiny, int idx) {
         for (int i = 0; i < origin.length; i++) {
-            destiny[idx + i] = origin[i];       // <--- Change 6 * n
+            destiny[idx + i] = origin[i];       
         }
     }
 

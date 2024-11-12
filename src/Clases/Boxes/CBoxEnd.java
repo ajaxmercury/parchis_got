@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Clases.Boxes;
 
@@ -9,10 +5,7 @@ import java.awt.Point;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
+
 public class CBoxEnd extends CBoxHome{
 
     public CBoxEnd(int id, int[] xpos, int[] ypos,  int player) throws Exception {

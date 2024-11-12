@@ -1,17 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package Clases;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author alexis
- */
 public class CAIPlayerSquire extends CPlayer {
 
     public CAIPlayerSquire(int id, String name, int house) {
